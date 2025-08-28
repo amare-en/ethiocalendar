@@ -1,0 +1,131 @@
+/* Global Styles */
+
+:root {
+  --primary-color: #1A1A1A;
+  --accent-color-1: #0E7C7B;
+  --accent-color-2: #FFD166;
+  --accent-color-3: #EF476F;
+  --neutral-light: #F8F9FA;
+  --neutral-dark: #6C757D;  /* Font Definitions */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif; /* Or 'Roboto', sans-serif; */
+  --font-ethiopic: 'Noto Sans Ethiopic', sans-serif;
+
+}
+
+body {
+  background-color: #f4f5f7;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--neutral-light);
+  color: var(--neutral-dark);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.v-card {
+  border-radius: 20px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.custom-box {
+  padding: 20px;
+  background: var(--neutral-light);
+  border-radius: 12px;
+}
+
+.custom-btn {
+  background-color: var(--accent-color-3) !important; /* Modern Coral for CTA */
+  color: white !important;
+}
+
+.feature-card {
+  margin-bottom: 20px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 12px;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+
+
+
+
+        :root {
+            --ethiopian-green: #078C3F;
+            --ethiopian-yellow: #FCDD09;
+            --ethiopian-red: #DA121A;
+            --ethiopian-blue: #0F47AF;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .ethiopian-holidays {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header-banner {
+            background: linear-gradient(135deg, var(--ethiopian-green) 0%, var(--ethiopian-yellow) 35%, var(--ethiopian-red) 70%, var(--ethiopian-blue) 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .holiday-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .holiday-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px -10px rgba(0,0,0,0.3);
+        }
+        
+        .upcoming-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            z-index: 1;
+        }
+        
+        .ethiopian-date {
+            font-weight: 500;
+            color: var(--ethiopian-green);
+        }
+        
+        .filter-buttons {
+            margin-bottom: 20px;
+        }
+        
+        .calendar-icon {
+            color: var(--ethiopian-red);
+        }
+        
+        @media (max-width: 768px) {
+            .header-banner {
+                text-align: center;
+            }
+            
+            .filter-buttons .v-btn {
+                margin-bottom: 8px;
+            }
+        }
