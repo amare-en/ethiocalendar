@@ -1,18 +1,77 @@
 <template>
-  <v-app>
-    <v-main class="bg-grey-lighten-4">
-      <v-container class="fill-height" fluid>
-        <v-row justify="center" align="center">
-          <v-col cols="12" md="10" lg="8">
-            <CalendarGrid />
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-main>
-  </v-app>
+  <v-container fluid class="pa-4">
+    <v-row class="mb-6 align-center justify-center">
+      <v-col cols="12" class="d-flex justify-center align-center">
+        <v-btn icon @click="prevYear" variant="text" color="primary">
+          <v-icon>mdi-chevron-left</v-icon>
+        </v-btn>
+
+        <h1 class="text-h4 font-weight-bold mx-4">
+          {{ selectedYear }} ዓ.ም
+        </h1>
+
+        <v-btn icon @click="nextYear" variant="text" color="primary">
+          <v-icon>mdi-chevron-right</v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
+    
+    <v-divider class="my-3" />
+    
+    <v-row class="mb-4">
+      <v-col cols="12" class="d-flex justify-end">
+        <v-switch
+          v-model="showGregorian"
+          label="Show Gregorian Dates"
+          color="primary"
+          hide-details
+        />
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col
+        v-for="month in 13"
+        :key="month"
+        cols="12"
+        sm="6"
+        lg="4"
+        xl="3"
+      >
+        <CalendarGrid 
+          :year="selectedYear" 
+          :month="month" 
+          :show-gregorian="showGregorian"
+        />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
- 
+
 <script setup lang="ts">
+import { ref } from 'vue';
+import { getCurrentEthiopianDate } from '~/utils/ethiopianDate';
 import CalendarGrid from '~/components/calendar/CalendarGrid.vue';
 
+// Get today's Ethiopian year
+const todayEth = getCurrentEthiopianDate();
+const selectedYear = ref(todayEth.year);
+
+// State for the Gregorian date toggle
+const showGregorian = ref(true);
+
+// Navigation
+const prevYear = () => {
+  selectedYear.value--;
+};
+
+const nextYear = () => {
+  selectedYear.value++;
+};
 </script>
+
+<style scoped>
+h1 {
+  color: #1e1e2f;
+}
+</style>

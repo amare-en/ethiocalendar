@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import { useEthiopianCalendar } from '~/composables/useEthiopianCalendar';
-const { ethiopianDate, ethiopianTime, gregorianDate, gregorianTime } = useEthiopianCalendar();
+import { useCurrentDateAndTime } from '~/composables/useCurrentDateAndTime';
+
+// Use the separate composable to get the current date and time data
+const { ethiopianDate, ethiopianTime, gregorianDate, gregorianTime } = useCurrentDateAndTime();
+
 </script>
 
 <template>
@@ -8,7 +11,7 @@ const { ethiopianDate, ethiopianTime, gregorianDate, gregorianTime } = useEthiop
     <h1 class="text-h6 font-bold">የዛሬ ቀን & ሰዓት</h1>
     <v-divider class="my-3" />
 
-    <v-row >
+    <v-row>
       <v-col cols="12" md="6" class="mb-4 mb-md-0">
         <div class="text-subtitle-2 mb-1">ኢትዮጵያዊ ቀን</div>
         <div class="text-h6 font-semibold">{{ ethiopianDate }}</div>

@@ -1,35 +1,46 @@
 <template>
-  <v-container class="py-10">
-    <v-row class="justify-center mb-8">
-      <v-col cols="12" class="text-center">
-        <h1 class="text-h4 font-bold">Ethiopian ↔ Gregorian Date Converter</h1>
-        <p class="text-subtitle-1">Convert dates between Ethiopian and Gregorian calendars</p>
-      </v-col>
-    </v-row>
+  <v-container class="py-8 bg-grey-lighten-4">
+    <v-row justify="center">
+      <v-col cols="12" md="10" lg="8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+          <h1 class="text-h4 font-weight-bold text-primary mb-2">
+            Ethiopian ↔ Gregorian Date Converter
+          </h1>
+          <p class="text-subtitle-1 text-medium-emphasis">
+            Easily convert dates between Ethiopian and Gregorian calendars
+          </p>
+        </div>
 
-    <v-row dense>
-      
-      <!-- Ethiopian → Gregorian -->
-      <v-col cols="12" md="6" class="mb-6">
-         <EthiopianToGregorian />
-      </v-col>
-<!-- Gregorian → Ethiopian -->
-      <v-col cols="12" md="6" class="mb-6">
-        <GregorianToEthiopian />
+        <!-- Conversion Sections -->
+        <v-row dense>
+          <!-- Ethiopian → Gregorian -->
+          <v-col cols="12" class="mb-6">
+            <EthiopianToGregorian />
+          </v-col>
+
+          <v-divider inset class="my-6 mx-4  px-10" />
+
+          <!-- Gregorian → Ethiopian -->
+          <v-col cols="12">
+            <GregorianToEthiopian />
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script setup lang="ts">
-
+// No script logic needed for the wrapper
 </script>
 
 <style scoped>
 h1 {
-  color: #1e1e2f;
+  font-family: 'Inter', sans-serif;
 }
-.text-subtitle-1 {
-  color: #555;
+
+.text-primary {
+  color: #3f51b5; /* Indigo (modern accent color) */
 }
 </style>

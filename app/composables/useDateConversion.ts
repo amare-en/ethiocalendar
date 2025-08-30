@@ -28,15 +28,41 @@ export function useDateConversion() {
   const convertedToEthiopian = ref<[number, number, number] | null>(null);
 
   // Convert Ethiopian → Gregorian
-  const convertEthToGr = (year: number, month: number, day: number) => {
-    try {
-      return toGregorian(year, month, day);
-    } catch (e) {
-      console.error('Invalid Ethiopian date:', e);
-      return null;
-    }
-  };
+  // inside useDateConversion() - replace the old convertEthToGr
+const convertEthToGr = (year: number, month: number, day: number): Date | null => {
+  try {
+    const res = toGregorian(year, month, day);
 
+    if (!res) return null;
+
+    // If the library already returned a Date
+    if (res instanceof Date) {
+      return res;
+    }
+
+    // If the library returned [year, month, day]
+    if (Array.isArray(res) && res.length >= 3) {
+      const [y, m, d] = res;
+      return new Date(y, m - 1, d);
+    }
+
+    // If the library returned an object { year, month, day }
+    if (typeof res === 'object' && 'year' in res && 'month' in res && 'day' in res) {
+      // @ts-ignore - defensive access
+      const y = (res as any).year;
+      const m = (res as any).month;
+      const d = (res as any).day;
+      return new Date(y, m - 1, d);
+    }
+
+    // If it's a string or other, try to coerce to Date
+    const coerced = new Date(res as any);
+    return isNaN(coerced.getTime()) ? null : coerced;
+  } catch (e) {
+    console.error('Invalid Ethiopian date (convertEthToGr):', e);
+    return null;
+  }
+};
   // Convert Gregorian → Ethiopian
   const convertGrToEth = (year: number, month: number, day: number) => {
     try {
@@ -67,6 +93,8 @@ export function useDateConversion() {
     const [year, month, day] = toEthiopian(today.getFullYear(), today.getMonth() + 1, today.getDate());
     return { year, month, day };
   };
+  //get current Gregorian date
+//  const currentGregorianDate = new Date();
 
   return {
     ethDay,

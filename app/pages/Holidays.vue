@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-main class="bg-background">
+      <HolidayHeroBanner />
       <div class="ethiopian-holidays">
         <HolidayHeader 
           title="Ethiopian Holidays"
@@ -12,9 +13,9 @@
             :filters="filters" 
             v-model="activeFilter"
           />
-          
           <HolidayList 
             :holidays="filteredHolidays"
+            :year="today.getFullYear()"
           />
         </v-container>
       </div>
@@ -27,7 +28,6 @@ import { ref, computed } from 'vue';
 import HolidayHeader from '~/components/holidays/HolidayHeader.vue';
 import HolidayFilters from '~/components/holidays/HolidayFilters.vue';
 import HolidayList from '~/components/holidays/HolidayList.vue';
-
 // Types
 interface Holiday {
   id: number;

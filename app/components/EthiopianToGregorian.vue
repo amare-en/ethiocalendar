@@ -1,10 +1,14 @@
 <template>
-  <v-card class="pa-6 rounded-xl shadow-lg max-w-lg mx-auto">
-    <v-card-title class="text-h6 text-center mb-4">
+  
+  <v-row class="d-flex flex-column rounded-lg max-w-lg mx-auto">
+    <!-- Title -->
+    <h2 class="text-h6 text-center mb-4">
       Ethiopian → Gregorian Converter
-    </v-card-title>
+    </h2>
 
+    <!-- Input Fields -->
     <v-row class="mb-4" dense>
+      <!-- Day -->
       <v-col cols="4">
         <v-select
           v-model="ethDay"
@@ -12,9 +16,13 @@
           label="Day"
           dense
           outlined
+          :disabled="daysInMonth.length === 0"
+          :hint="monthHint"
+          persistent-hint
         />
       </v-col>
 
+      <!-- Month -->
       <v-col cols="4">
         <v-select
           v-model="ethMonth"
@@ -25,6 +33,7 @@
         />
       </v-col>
 
+      <!-- Year -->
       <v-col cols="4">
         <v-select
           v-model="ethYear"
@@ -36,26 +45,45 @@
       </v-col>
     </v-row>
 
-    <v-btn
-      color="primary"
-      class="mb-4"
-      @click="onConvert"
-      rounded
+    <!-- Convert Button -->
+    <div class="text-center">
+      <v-btn
+        color="primary"
+        class="mb-4"
+        @click="onConvert"
+        rounded
       large
       elevation="2"
+      :disabled="!ethMonth || !ethYear || !ethDay"
     >
-      Convert
+      Convert Date
     </v-btn>
+    </div>
 
-    <v-card-text v-if="formattedGregorianDate" class="text-center text-subtitle-1">
+    <!-- Result -->
+    <v-card-text
+      v-if="formattedGregorianDate"
+      class="text-center text-subtitle-1"
+    >
       {{ formattedGregorianDate }}
     </v-card-text>
-  </v-card>
+
+    <!-- Error Message -->
+    <v-alert
+      v-if="errorMessage"
+      type="error"
+      variant="tonal"
+      density="comfortable"
+      class="mt-2"
+    >
+      {{ errorMessage }}
+    </v-alert>
+  </v-row>
 </template>
 
 <script setup lang="ts">
-import { computed, watch, onMounted } from 'vue';
-import { useDateConversion } from '@/composables/useDateConversion';
+import { ref, computed, watch, onMounted } from "vue";
+import { useDateConversion } from "@/composables/useDateConversion";
 
 // Shared composable
 const {
@@ -68,8 +96,11 @@ const {
   generateYears,
   getDaysInMonth,
   generateDays,
-  getCurrentEthiopianDate
+  getCurrentEthiopianDate,
 } = useDateConversion();
+
+// Error state
+const errorMessage = ref("");
 
 // Set default to current Ethiopian date
 const { year: currYear, month: currMonth, day: currDay } = getCurrentEthiopianDate();
@@ -80,12 +111,23 @@ ethDay.value = currDay;
 // Reactive days for the selected month
 const daysInMonth = computed(() => {
   const monthIndex = ETH_MONTHS.indexOf(ethMonth.value ?? "");
-  if (monthIndex === -1) return []; // Handle invalid month gracefully
+  if (monthIndex === -1) return [];
   const numDays = getDaysInMonth(ethYear.value, monthIndex + 1);
   return generateDays(numDays);
 });
 
-// Watch for changes in year or month and reset day if it's out of range
+// Month hint (adds clarity for Pagume)
+const monthHint = computed(() => {
+  const monthIndex = ETH_MONTHS.indexOf(ethMonth.value ?? "");
+  if (monthIndex === 12) {
+    return (ethYear.value % 4 === 3)
+      ? "ጳጉሜ has 6 days this year (leap year)"
+      : "ጳጉሜ has 5 days this year";
+  }
+  return "30 days";
+});
+
+// Validate day range
 watch([ethYear, ethMonth], () => {
   const maxDays = daysInMonth.value.length;
   if (ethDay.value > maxDays) {
@@ -95,37 +137,33 @@ watch([ethYear, ethMonth], () => {
 
 // Convert button handler
 const onConvert = () => {
+  errorMessage.value = "";
   const monthIndex = ETH_MONTHS.indexOf(ethMonth.value ?? "");
   if (monthIndex === -1) {
     convertedToGregorian.value = null;
+    errorMessage.value = "Invalid Ethiopian month selected.";
     return;
   }
-  convertedToGregorian.value = convertEthToGr(
-    ethYear.value,
-    monthIndex + 1,
-    ethDay.value
-  );
+  const result = convertEthToGr(ethYear.value, monthIndex + 1, ethDay.value);
+  if (!result) {
+    errorMessage.value = "Conversion failed. Please check your input.";
+  }
+  convertedToGregorian.value = result;
 };
 
-
+// Formatted result
 const formattedGregorianDate = computed(() => {
   if (convertedToGregorian.value) {
-    return convertedToGregorian.value.toLocaleDateString('en-US', {
-      weekday: 'long',
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
+    return convertedToGregorian.value.toLocaleDateString("en-US", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
     });
   }
-  return ''; // Return an empty string if null
-});
-
-// Perform an initial conversion when the component is mounted
-onMounted(() => {
-  onConvert();
+  return "";
 });
 </script>
-
 
 <style scoped>
 .v-card-title {
@@ -134,8 +172,18 @@ onMounted(() => {
 }
 
 .v-btn {
-  width: 100%;
   font-weight: 500;
   text-transform: none;
 }
 </style>
+
+<!--
+
+Pulls state and helpers from the composable:
+
+State refs: ethDay, ethMonth, ethYear, convertedToGregorian.
+
+Converters: convertEthToGr (wraps toGregorian from ethiopian-date).
+
+Data/Helpers: ETH_MONTHS, generateYears, getDaysInMonth, generateDays, getCurrentEthiopianDate.
+-->
