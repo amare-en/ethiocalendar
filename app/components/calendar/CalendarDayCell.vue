@@ -48,11 +48,14 @@ defineEmits(['select-date']);
 <style scoped>
 .day-cell {
   height: 80px;
-  width: calc(100% / 7);
+  width: calc(100% / 7);   /* Force 7 equal columns */
   padding: 4px;
   border: 1px solid #e0e0e0;
   position: relative;
   transition: background-color 0.2s ease-in-out;
+  box-sizing: border-box;   /* Prevent padding from breaking width */
+  overflow: hidden;         /* Cut off any extra content */
+  text-overflow: ellipsis;
 }
 
 .day-cell.is-clickable {
@@ -69,34 +72,38 @@ defineEmits(['select-date']);
   align-items: center;
   justify-content: center;
   height: 100%;
+  text-align: center;
+  overflow: hidden;
 }
 
 .top-row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   margin-bottom: 4px;
+  flex-wrap: wrap;    /* Wrap instead of overflow */
 }
 
 .geez-numeral {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 600;
   line-height: 1;
   color: #1e1e2f;
 }
 
 .arabic-numeral {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #757575;
 }
 
 .gregorian-date-display {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 500;
   color: #757575;
+  word-break: break-word;
 }
 
-/* Day states and highlights */
+/* ✅ Day states and highlights */
 .current-day {
   background-color: #e3f2fd;
   border: 2px solid #1976d2;
@@ -109,8 +116,8 @@ defineEmits(['select-date']);
 }
 
 .holiday-day {
-  background-color: #fce4ec; /* Light pink background */
-  border: 2px solid #d81b60; /* Dark pink border */
+  background-color: #fce4ec;
+  border: 2px solid #d81b60;
   color: #d81b60;
   border-radius: 8px;
 }
@@ -129,4 +136,37 @@ defineEmits(['select-date']);
 .empty-day {
   height: 100%;
 }
+
+/* 📱 Responsive sizing */
+@media (max-width: 768px) {
+  .day-cell {
+    height: 60px;   /* smaller on tablets */
+  }
+  .geez-numeral {
+    font-size: 1rem;
+  }
+  .arabic-numeral {
+    font-size: 0.8rem;
+  }
+  .gregorian-date-display {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .day-cell {
+    height: 45px;   /* compact on mobile */
+    padding: 2px;
+  }
+  .geez-numeral {
+    font-size: 0.9rem;
+  }
+  .arabic-numeral {
+    font-size: 0.7rem;
+  }
+  .gregorian-date-display {
+    font-size: 0.55rem;
+  }
+}
+
 </style>

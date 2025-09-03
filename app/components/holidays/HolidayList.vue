@@ -21,7 +21,6 @@
     </v-list>
   </v-card>
 </template>
-
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { getHolidaysForYear } from '@/utils/holidays';
@@ -33,28 +32,22 @@ const props = defineProps({
     required: true,
   },
 });
-
 const holidays = ref<Array<{ month: number, day: number, name: { am: string; en: string } }>>([]);
-
 const formatHolidayDate = (holiday: { month: number, day: number, name: { am: string; en: string } }) => {
     const monthName = getEthiopianMonthName(holiday.month);
     const ethDate = `${monthName} ${holiday.day}, ${props.year}`;
-    
     const gDate = ethiopianToGregorian(props.year, holiday.month, holiday.day);
     const gregDate = gDate.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
     });
-
     return `${ethDate}  /  ${gregDate}`;
 };
-
 watch(() => props.year, (newYear) => {
     holidays.value = getHolidaysForYear(newYear);
 }, { immediate: true });
 </script>
-
 <style scoped>
 .primary--text {
     color: #1976D2; /* Vuetify primary blue */

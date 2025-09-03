@@ -1,31 +1,68 @@
-/* Global Styles */
+/*
+ * Global Styles
+ * A single, organized file for consistent styling.
+ */
+
+/*
+ * -------------------
+ * CSS Custom Properties (Variables)
+ * -------------------
+ */
 
 :root {
-  --primary-color: #1A1A1A;
-  --accent-color-1: #0E7C7B;
-  --accent-color-2: #FFD166;
-  --accent-color-3: #EF476F;
-  --neutral-light: #F8F9FA;
-  --neutral-dark: #6C757D;  /* Font Definitions */
-  --font-heading: 'Poppins', sans-serif;
-  --font-body: 'Inter', sans-serif; /* Or 'Roboto', sans-serif; */
-  --font-ethiopic: 'Noto Sans Ethiopic', sans-serif;
+  /* Brand and Accent Colors */
+  --primary-color: #1A1A1A; /* A deep, neutral black for text */
+  --accent-color-1: #0E7C7B; /* Teal */
+  --accent-color-2: #FFD166; /* Sunny Yellow */
+  --accent-color-3: #EF476F; /* Modern Coral for CTAs */
 
+  /* Neutral and Background Colors */
+  --neutral-light: #FCFCFC; /* A very light off-white */
+  --neutral-dark: #6C757D; /* A soft gray for secondary text */
+  --background-color: #F5F5F5; /* A light gray background for the body */
+
+  /* Ethiopian Flag Colors */
+  --ethiopian-green: #078C3F;
+  --ethiopian-yellow: #FCDD09;
+  --ethiopian-red: #DA121A;
+  --ethiopian-blue: #0F47AF;
+
+  /* Font Definitions */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', 'Roboto', sans-serif;
+  --font-ethiopic: 'Noto Sans Ethiopic', sans-serif;
 }
 
+/*
+ * -------------------
+ * Base HTML Element Styles
+ * -------------------
+ */
+
 body {
-  background-color: #f4f5f7;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
+  background-color: var(--background-color);
+  color: var(--neutral-dark);
   margin: 0;
   padding: 0;
-  background-color: var(--neutral-light);
-  color: var(--neutral-dark);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--primary-color);
+  margin-bottom: 10px;
 }
 
 a {
   text-decoration: none;
   color: inherit;
 }
+
+/*
+ * -------------------
+ * Vuetify and Component-Specific Styles
+ * -------------------
+ */
 
 .v-card {
   border-radius: 20px;
@@ -39,7 +76,7 @@ a {
 }
 
 .custom-btn {
-  background-color: var(--accent-color-3) !important; /* Modern Coral for CTA */
+  background-color: var(--accent-color-3) !important;
   color: white !important;
 }
 
@@ -50,82 +87,74 @@ a {
   padding: 12px;
 }
 
+/*
+ * -------------------
+ * Ethiopian Holidays-specific Styles
+ * -------------------
+ */
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', sans-serif;
-  color: var(--primary-color);
-  margin-bottom: 10px;
+.ethiopian-holidays {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
+.header-banner {
+  background: linear-gradient(
+    135deg,
+    var(--ethiopian-green) 0%,
+    var(--ethiopian-yellow) 35%,
+    var(--ethiopian-red) 70%
+  );
+  color: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
 
+.holiday-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+}
 
+.holiday-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px -10px rgba(0,0,0,0.3);
+}
 
+.upcoming-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1;
+}
 
-        :root {
-            --ethiopian-green: #078C3F;
-            --ethiopian-yellow: #FCDD09;
-            --ethiopian-red: #DA121A;
-            --ethiopian-blue: #0F47AF;
-        }
-        
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .ethiopian-holidays {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .header-banner {
-            background: linear-gradient(135deg, var(--ethiopian-green) 0%, var(--ethiopian-yellow) 35%, var(--ethiopian-red) 70%, var(--ethiopian-red) 100%);
-            color: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .holiday-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        
-        .holiday-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 20px -10px rgba(0,0,0,0.3);
-        }
-        
-        .upcoming-badge {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            z-index: 1;
-        }
-        
-        .ethiopian-date {
-            font-weight: 500;
-            color: var(--ethiopian-green);
-        }
-        
-        .filter-buttons {
-            margin-bottom: 20px;
-        }
-        
-        .calendar-icon {
-            color: var(--ethiopian-red);
-        }
-        
-        @media (max-width: 768px) {
-            .header-banner {
-                text-align: center;
-            }
-            
-            .filter-buttons .v-btn {
-                margin-bottom: 8px;
-            }
-        }
+.ethiopian-date {
+  font-weight: 500;
+  color: var(--ethiopian-green);
+}
+
+.filter-buttons {
+  margin-bottom: 20px;
+}
+
+.calendar-icon {
+  color: var(--ethiopian-red);
+}
+
+/*
+ * -------------------
+ * Media Queries for Responsiveness
+ * -------------------
+ */
+
+@media (max-width: 768px) {
+  .header-banner {
+    text-align: center;
+  }
+  
+  .filter-buttons .v-btn {
+    margin-bottom: 8px;
+  }
+}

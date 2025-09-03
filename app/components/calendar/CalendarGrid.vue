@@ -4,23 +4,32 @@
       {{ monthName }} {{ year }}
     </v-card-title>
     <v-card-text>
-      <v-table density="comfortable" fixed-header>
-        <CalendarWeekdays :weekdays="weekDays" :show-gregorian="showGregorian" />
-        <tbody>
-          <tr v-for="(week, index) in calendarGrid" :key="index">
-            <CalendarDayCell
-              v-for="(day, dayIndex) in week"
-              :key="dayIndex"
-              :day="day"
-              :is-current-day="isCurrentDay(day)"
-              :is-selected="isSelected(day)"
-              :is-holiday="isHoliday(day)"
-              :show-gregorian="showGregorian"
-              @select-date="selectDate"
-            />
-          </tr>
-        </tbody>
-      </v-table>
+ <v-table
+  density="comfortable"
+  fixed-header
+  class="calendar-table"
+>
+  <CalendarWeekdays 
+    :weekdays="weekDays" 
+    :show-gregorian="showGregorian" 
+  />
+
+  <tbody>
+    <tr v-for="(week, index) in calendarGrid" :key="index">
+      <CalendarDayCell  
+        v-for="(day, dayIndex) in week"
+        :key="dayIndex"
+        :day="day"
+        :is-current-day="isCurrentDay(day)"
+        :is-selected="isSelected(day)"
+        :is-holiday="isHoliday(day)"
+        :show-gregorian="showGregorian"
+        @select-date="selectDate"
+      />
+    </tr>
+  </tbody>
+</v-table>
+
     </v-card-text>
   </v-card>
 </template>
@@ -128,9 +137,42 @@ function isHoliday(day: Day | null): boolean {
       holiday.day === day.ethiopian.day
   );
 }
-
 function selectDate(day: Day | null) {
   if (!day) return;
   selectedDate.value = day;
 }
 </script>
+<style scoped>
+.calendar-table {
+  width: 100%;
+  table-layout: fixed; /* Keeps equal column widths */
+  border-collapse: collapse;
+ 
+}
+
+.calendar-table th,
+.calendar-table td {
+  text-align: center;
+  white-space: nowrap;
+  padding: 6px;
+  font-size: 0.95rem;
+}
+
+/* 🔹 Small screens: shrink font & padding */
+@media (max-width: 768px) {
+  .calendar-table th,
+  .calendar-table td {
+    font-size: 0.8rem;
+    padding: 4px;
+  }
+}
+
+/* 🔹 Extra small screens: stack-friendly */
+@media (max-width: 480px) {
+  .calendar-table th,
+  .calendar-table td {
+    font-size: 0.7rem;
+    padding: 2px;
+  }
+}
+</style>

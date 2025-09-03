@@ -18,7 +18,7 @@
     
     <v-divider class="my-3" />
     
-    <v-row class="mb-4">
+    <v-row>
       <v-col cols="12" class="d-flex justify-end">
         <v-switch
           v-model="showGregorian"
@@ -35,7 +35,7 @@
         :key="month"
         cols="12"
         sm="6"
-        lg="4"
+        lg="6"
         xl="3"
       >
         <CalendarGrid 

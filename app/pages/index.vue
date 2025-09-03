@@ -1,8 +1,8 @@
 <template>
     <v-container>
-      <CurrentEthiopiaDate/>
-     <div class="py-8"><FeatureCards/></div>
        <AboutEthiopiaCalendar/>
+     <div class="py-8"><FeatureCards/></div>
+      <CurrentEthiopiaDate/>
     </v-container>
 </template>
 <script setup>  </script>

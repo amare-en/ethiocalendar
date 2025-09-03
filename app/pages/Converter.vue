@@ -1,5 +1,5 @@
 <template>
-  <v-container class="py-8 bg-grey-lighten-4">
+  <v-container class="py-8">
     <v-row justify="center">
       <v-col cols="12" md="10" lg="8">
         <!-- Header -->
