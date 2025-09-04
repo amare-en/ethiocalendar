@@ -1,66 +1,56 @@
 <template>
-  <div class="max-w-4xl mx-auto text-center py-12">
+  <v-container class="py-12">
     <!-- Title -->
-    <h1
-      class="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-500 to-pink-500 bg-clip-text"
-    >
-      Current Date in Ethiopia
-    </h1>
-    <p class="text-gray-500 mt-3 text-lg">
-      Live updates of Ethiopian & Gregorian calendar
-    </p>
+    <div class="text-center">
+      <h1 class="text-h3 font-weight-bold text-gradient mb-2">
+        Current Date in Ethiopia
+      </h1>
+      <p class="text-subtitle-1 text-medium-emphasis">
+        Live updates of Ethiopian & Gregorian calendar
+      </p>
+    </div>
 
-    <!-- Cards -->
-    <v-container class="mt-12">
-      <v-row dense>
-        <!-- Ethiopian Date Card -->
-        <v-col cols="12" md="6">
-          <div
-            class="glass-card p-6 rounded-2xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-in-out"
-          >
-            <h2
-              class="text-2xl font-semibold flex items-center justify-center gap-2 text-indigo-600"
-            >
-              <v-icon icon="mdi-calendar-blank" size="28" class="text-indigo-500" />
-              Ethiopian Date
-            </h2>
-            <p class="text-xl mt-4 font-bold text-gray-900 tracking-wide">
-              {{ ethiopianDate }}
-            </p>
-            <div
-              class="mt-5 flex items-center justify-center gap-2 text-indigo-600 font-medium"
-            >
-              <v-icon icon="mdi-clock-time-four-outline" size="22" />
-              <span class="text-lg">{{ ethiopianTime }}</span>
-            </div>
+    <!-- Ethiopian & Gregorian Dates -->
+    <v-row class="mt-10" dense>
+      <!-- Ethiopian Date -->
+      <v-col cols="12" md="6">
+        <div class="pa-4 border rounded-lg text-center">
+          <h2 class="text-h5 font-weight-semibold d-flex align-center justify-center text-indigo-darken-2">
+            <v-icon icon="mdi-calendar-blank" size="28" class="me-2" />
+            Ethiopian Date
+          </h2>
+          <div class="text-h6 font-weight-bold mt-3">
+            {{ ethiopianDate }}
           </div>
-        </v-col>
+          <div class="d-flex align-center justify-center mt-4 text-indigo-darken-2">
+            <v-icon icon="mdi-clock-time-four-outline" size="22" class="me-2" />
+            <span class="text-subtitle-1 font-weight-medium">
+              {{ ethiopianTime }}
+            </span>
+          </div>
+        </div>
+      </v-col>
 
-        <!-- Gregorian Date Card -->
-        <v-col cols="12" md="6">
-          <div
-            class="glass-card p-6 rounded-2xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-in-out"
-          >
-            <h2
-              class="text-2xl font-semibold flex items-center justify-center gap-2 text-pink-600"
-            >
-              <v-icon icon="mdi-calendar-range" size="28" class="text-pink-500" />
-              Gregorian Date
-            </h2>
-            <p class="text-xl mt-4 font-bold text-gray-900 tracking-wide">
-              {{ gregorianDate }}
-            </p>
-            <div
-              class="mt-5 flex items-center justify-center gap-2 text-pink-600 font-medium"
-            >
-              <v-icon icon="mdi-clock-outline" size="22" />
-              <span class="text-lg">{{ gregorianTime }}</span>
-            </div>
+      <!-- Gregorian Date -->
+      <v-col cols="12" md="6">
+        <div class="pa-4 border rounded-lg text-center">
+          <h2 class="text-h5 font-weight-semibold d-flex align-center justify-center text-pink-darken-2">
+            <v-icon icon="mdi-calendar-range" size="28" class="me-2" />
+            Gregorian Date
+          </h2>
+          <div class="text-h6 font-weight-bold mt-3">
+            {{ gregorianDate }}
           </div>
-        </v-col>
-      </v-row>
-    </v-container>
-  </div>
+          <div class="d-flex align-center justify-center mt-4 text-pink-darken-2">
+            <v-icon icon="mdi-clock-outline" size="22" class="me-2" />
+            <span class="text-subtitle-1 font-weight-medium">
+              {{ gregorianTime }}
+            </span>
+          </div>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script setup lang="ts">
@@ -71,11 +61,9 @@ const { ethiopianDate, gregorianDate, ethiopianTime, gregorianTime } =
 </script>
 
 <style scoped>
-/* Glassmorphism card style */
-.glass-card {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  transition: all 0.3s ease-in-out;
+.text-gradient {
+  background: linear-gradient(90deg, #3f51b5, #e91e63);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 </style>

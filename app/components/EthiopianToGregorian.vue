@@ -1,85 +1,93 @@
 <template>
-  
-  <v-row class="d-flex flex-column rounded-lg max-w-lg mx-auto">
-    <!-- Title -->
-    <h2 class="text-h6 text-center mb-4">
-      Ethiopian → Gregorian Converter
-    </h2>
+  <v-container class="d-flex justify-center">
+    <v-row
+      class="flex-column rounded-lg pa-6"
+      style="max-width: 500px;"
+    >
+      <!-- Title -->
+      <h2 class="text-h6 text-center mb-6 font-weight-bold text-primary">
+        Ethiopian → Gregorian Converter
+      </h2>
 
-    <!-- Input Fields -->
-    <v-row class="mb-4" dense>
-      <!-- Day -->
-      <v-col cols="4">
-        <v-select
-          v-model="ethDay"
-          :items="daysInMonth"
-          label="Day"
-          dense
-          outlined
-          :disabled="daysInMonth.length === 0"
-          :hint="monthHint"
-          persistent-hint
-        />
-      </v-col>
+      <!-- Input Fields -->
+      <v-row dense class="mb-6">
+        <!-- Day -->
+        <v-col cols="12" md="4">
+          <v-select
+            v-model="ethDay"
+            :items="daysInMonth"
+            label="Day"
+            :disabled="daysInMonth.length === 0"
+            :hint="monthHint"
+            persistent-hint
+            variant="outlined"
+            density="comfortable"
+            rounded="lg"
+          />
+        </v-col>
 
-      <!-- Month -->
-      <v-col cols="4">
-        <v-select
-          v-model="ethMonth"
-          :items="ETH_MONTHS"
-          label="Month"
-          dense
-          outlined
-        />
-      </v-col>
+        <!-- Month -->
+        <v-col cols="12" md="4">
+          <v-select
+            v-model="ethMonth"
+            :items="ETH_MONTHS"
+            label="Month"
+            variant="outlined"
+            density="comfortable"
+            rounded="lg"
+          />
+        </v-col>
 
-      <!-- Year -->
-      <v-col cols="4">
-        <v-select
-          v-model="ethYear"
-          :items="generateYears(1900, 2100)"
-          label="Year"
-          dense
-          outlined
-        />
-      </v-col>
+        <!-- Year -->
+        <v-col cols="12" md="4">
+          <v-select
+            v-model="ethYear"
+            :items="generateYears(1900, 2100)"
+            label="Year"
+            variant="outlined"
+            density="comfortable"
+            rounded="lg"
+          />
+        </v-col>
+      </v-row>
+
+      <!-- Convert Button -->
+      <div class="text-center mb-6">
+        <v-btn
+          color="primary"
+          size="large"
+          rounded="xl"
+          variant="elevated"
+          class="px-6 text-capitalize"
+          @click="onConvert"
+          :disabled="!ethMonth || !ethYear || !ethDay"
+        >
+          Convert Date
+        </v-btn>
+      </div>
+
+      <!-- Result -->
+      <div
+        v-if="formattedGregorianDate"
+        class="text-center text-h6 font-weight-medium text-success"
+      >
+        {{ formattedGregorianDate }}
+      </div>
+
+      <!-- Error Message -->
+      <v-alert
+        v-if="errorMessage"
+        type="error"
+        variant="tonal"
+        density="comfortable"
+        class="mt-4"
+      >
+        {{ errorMessage }}
+      </v-alert>
     </v-row>
-
-    <!-- Convert Button -->
-    <div class="text-center">
-      <v-btn
-        color="primary"
-        class="mb-4"
-        @click="onConvert"
-        rounded
-      large
-      elevation="2"
-      :disabled="!ethMonth || !ethYear || !ethDay"
-    >
-      Convert Date
-    </v-btn>
-    </div>
-
-    <!-- Result -->
-    <v-card-text
-      v-if="formattedGregorianDate"
-      class="text-center text-subtitle-1"
-    >
-      {{ formattedGregorianDate }}
-    </v-card-text>
-
-    <!-- Error Message -->
-    <v-alert
-      v-if="errorMessage"
-      type="error"
-      variant="tonal"
-      density="comfortable"
-      class="mt-2"
-    >
-      {{ errorMessage }}
-    </v-alert>
-  </v-row>
+  </v-container>
 </template>
+
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from "vue";

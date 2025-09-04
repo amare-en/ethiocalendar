@@ -12,7 +12,6 @@ import {
 export function useCurrentDateAndTime() {
   const currentDate = ref(new Date());
   let timer: ReturnType<typeof setInterval>;
-
   // Convert the current Gregorian date to Ethiopian
   const ethiopian = computed(() => gregorianToEthiopian(currentDate.value));
 
@@ -22,6 +21,7 @@ export function useCurrentDateAndTime() {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
+      weekday: 'long',
     })
   );
 

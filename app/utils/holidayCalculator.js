@@ -1,8 +1,8 @@
 // A simplified function to calculate Ethiopian Easter.
 // This is an example, and a more robust algorithm might be needed for full accuracy.
-import { EthiopianDate } from 'ethiopian-date';
+import * as ethiopianDate from 'ethiopian-date';
 
-function calculateEthiopianEaster(year) {
+export function calculateEthiopianEaster(year) {
   // Fasika is a movable feast based on the Gregorian Easter date.
   // A common (but not perfect) algorithm for the Gregorian Easter date:
   const a = year % 19;
@@ -29,11 +29,11 @@ function calculateEthiopianEaster(year) {
   const gregorianEaster = new Date(year, month - 1, day);
   
   // Now, convert it to the Ethiopian date using the `ethiopian-date` library.
-  const ethiopianEaster = EthiopianDate.fromGregorian(gregorianEaster.getFullYear(), gregorianEaster.getMonth() + 1, gregorianEaster.getDate());
+  const ethiopianEasterArray = ethiopianDate.toEthiopian(gregorianEaster.getFullYear(), gregorianEaster.getMonth() + 1, gregorianEaster.getDate());
 
   return {
     title: { am: 'ፋሲካ', en: 'Fasika (Easter)' },
-    date: { year: ethiopianEaster.year, month: ethiopianEaster.month, day: ethiopianEaster.day },
+    date: { year: ethiopianEasterArray[0], month: ethiopianEasterArray[1], day: ethiopianEasterArray[2] },
     category: 'Religious',
     description: 'The Ethiopian Orthodox celebration of the Resurrection of Jesus Christ.'
   };

@@ -1,54 +1,80 @@
 <template>
-  <v-row class="d-flex flex-column rounded-lg max-w-lg mx-auto pa-6">
-    <h2 class="text-h6 text-center mb-4">
-      Gregorian → Ethiopian Converter
-    </h2>
+  <v-container class="d-flex justify-center">
+    <v-row
+      class="flex-column rounded-lg pa-6"
+      style="max-width: 500px;"
+    >
+      <!-- Title -->
+      <h2 class="text-h6 text-center mb-6 font-weight-bold text-primary">
+        Gregorian → Ethiopian Converter
+      </h2>
 
-    <!-- Gregorian Inputs -->
-    <v-row class="mb-4" dense>
-      <v-col cols="4">
-        <v-select
-          v-model="grDay"
-          :items="generateDays(31)"
-          label="Day"
-          dense
-          outlined
-        />
-      </v-col>
-      <v-col cols="4">
-        <v-select
-          v-model="grMonth"
-          :items="GR_MONTHS"
-          label="Month"
-          dense
-          outlined
-        />
-      </v-col>
-      <v-col cols="4">
-        <v-select
-          v-model="grYear"
-          :items="generateYears(1900, 2100)"
-          label="Year"
-          dense
-          outlined
-        />
-      </v-col>
+      <!-- Gregorian Inputs -->
+      <v-row dense class="mb-6">
+        <!-- Day -->
+        <v-col cols="12" md="4">
+          <v-select
+            v-model="grDay"
+            :items="generateDays(31)"
+            label="Day"
+            variant="outlined"
+            density="comfortable"
+            rounded="lg"
+          />
+        </v-col>
+
+        <!-- Month -->
+        <v-col cols="12" md="4">
+          <v-select
+            v-model="grMonth"
+            :items="GR_MONTHS"
+            label="Month"
+            variant="outlined"
+            density="comfortable"
+            rounded="lg"
+          />
+        </v-col>
+
+        <!-- Year -->
+        <v-col cols="12" md="4">
+          <v-select
+            v-model="grYear"
+            :items="generateYears(1900, 2100)"
+            label="Year"
+            variant="outlined"
+            density="comfortable"
+            rounded="lg"
+          />
+        </v-col>
+      </v-row>
+
+      <!-- Convert Button -->
+      <div class="text-center mb-6">
+        <v-btn
+          color="primary"
+          variant="elevated"
+          size="large"
+          rounded="xl"
+          class="text-capitalize px-6"
+          @click="onConvert"
+        >
+          Convert Date
+        </v-btn>
+      </div>
+
+      <!-- Ethiopian Result -->
+      <div
+        v-if="convertedToEthiopian"
+        class="text-center text-h6 font-weight-medium text-success"
+      >
+        {{ convertedToEthiopian[2] }}
+        {{ ETH_MONTHS[convertedToEthiopian[1] - 1] }}
+        {{ convertedToEthiopian[0] }}
+      </div>
     </v-row>
-    <!-- Convert Button -->
-    <div class="text-center">
-      <v-btn color="primary" class="mb-4 text-capitalize" @click="onConvert" rounded large>
-        Convert Date
-      </v-btn>
-    </div>
-
-    <!-- Ethiopian Result -->
-    <div v-if="convertedToEthiopian" class="text-center text-subtitle-1">
-      {{ convertedToEthiopian[2] }} 
-      {{ ETH_MONTHS[convertedToEthiopian[1] - 1] }} 
-      {{ convertedToEthiopian[0] }}
-    </div>
-  </v-row>
+  </v-container>
 </template>
+
 
 <script setup lang="ts">
 import { onMounted } from "vue";
