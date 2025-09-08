@@ -13,7 +13,6 @@
     :weekdays="weekDays" 
     :show-gregorian="showGregorian" 
   />
-
   <tbody>
     <tr v-for="(week, index) in calendarGrid" :key="index">
       <CalendarDayCell  
@@ -45,8 +44,6 @@ import {
 } from '~/utils/ethiopianDate';
 import CalendarWeekdays from '~/components/calendar/CalendarWeekdays.vue';
 import CalendarDayCell from '~/components/calendar/CalendarDayCell.vue';
-import { staticHolidays } from '~/utils/staticHolidays';
-import { calculateEthiopianEaster } from '~/utils/holidayCalculator';
 
 // Define the type for a day object
 interface Day {
@@ -64,37 +61,19 @@ const props = defineProps<{
 }>();
 
 const selectedDate = ref<Day | null>(null);
-
 const monthName = computed(() => getEthiopianMonthName(props.month));
 const weekDays = computed(() => Array.from({ length: 7 }, (_, i) => getEthiopianDayName(i)));
 
-// Create a dynamic list of all holidays for the displayed year
-const holidaysForYear = computed(() => {
-  // The calculator expects a Gregorian year. We derive it from the Ethiopian year prop.
-  const gregorianYearForCalc = ethiopianToGregorian(props.year, 1, 1).getFullYear();
-
-  // Get movable holidays for the current year
-  const movableHolidays = [
-      calculateEthiopianEaster(gregorianYearForCalc),
-      // Future movable holidays can be added here
-  ];
-
-  // Combine static and movable holidays
-  const allHolidays = [...staticHolidays, ...movableHolidays];
-  
-  // For efficiency, create a lookup Set: e.g., "month-day"
-  const holidaySet = new Set<string>();
-  allHolidays.forEach(h => {
-      // Handle both static (month, day) and movable (year, month, day) dates
-      const holidayDate = h.date.year ? h.date : { year: props.year, ...h.date };
-      
-      // Only add holidays that fall within the currently displayed Ethiopian year
-      if (holidayDate.year === props.year) {
-          holidaySet.add(`${holidayDate.month}-${holidayDate.day}`);
-      }
-  });
-  return holidaySet;
-});
+// Hardcoded holiday data for demonstration. 
+// In a real application, you would fetch this data dynamically.
+const holidays = computed(() => [
+  // Ethiopian New Year
+  { year: 2017, month: 1, day: 1 }, 
+  // Meskel
+  { year: 2017, month: 1, day: 17 }, 
+  // Christmas
+  { year: 2017, month: 4, day: 29 }, 
+]);
 
 const calendarGrid = computed(() => {
   const daysInMonth = getEthiopianMonthDays(props.year, props.month);
@@ -147,13 +126,15 @@ function isSelected(day: Day | null): boolean {
   );
 }
 
-// Updated isHoliday function for an efficient O(1) lookup
 function isHoliday(day: Day | null): boolean {
   if (!day) return false;
-  const dateString = `${day.ethiopian.month}-${day.ethiopian.day}`;
-  return holidaysForYear.value.has(dateString);
+  return holidays.value.some(
+    (holiday) =>
+      holiday.year === day.ethiopian.year &&
+      holiday.month === day.ethiopian.month &&
+      holiday.day === day.ethiopian.day
+  );
 }
-
 function selectDate(day: Day | null) {
   if (!day) return;
   selectedDate.value = day;

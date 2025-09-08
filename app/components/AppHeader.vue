@@ -1,103 +1,99 @@
 <template>
-  <!-- Top App Bar -->
-  <v-app-bar
-    flat
-    height="70"
-    class="head"
-    color="primary"
-  >
-    <!-- Logo & Title -->
-    <NuxtLink to="/" class="d-flex align-center text-white text-decoration-none ml-15">
-      <v-img
-        src="/logo2.png"
-        alt="Logo"
-        height="50"
-        width="50"
-        contain
-        class="mr-2"
-      />
-      <span class="app-title">Ethiopian Calendar</span>
-    </NuxtLink>
+  <v-app-bar app elevation="2" :height="70" class="app-header" color="primary">
+    <v-app-bar-nav-icon
+      class="d-md-none"
+      @click="emit('toggle-drawer')"
+    />
+
+    <v-toolbar-title class="d-flex align-center">
+      <NuxtLink to="/" class="d-flex align-center text-decoration-none text-white">
+        <v-img
+          src="/logo2.png"
+          alt="Logo"
+          height="42"
+          width="42"
+          class="mr-2"
+        />
+        <span class="text-h6 font-weight-bold">Ethiopian Calendar</span>
+      </NuxtLink>
+    </v-toolbar-title>
 
     <v-spacer />
-
-    <!-- Desktop Navigation -->
-    <div class="d-none d-md-flex align-center mr-6">
+<!--
+    <nav class="d-none d-md-flex align-center">
       <NuxtLink
         v-for="(item, i) in menuItems"
         :key="i"
         :to="item.to"
         class="nav-link"
+        active-class="router-link-active"
       >
         {{ item.title }}
       </NuxtLink>
-    </div>
-
-    <!-- Mobile Menu Button -->
-    <v-btn
-      icon
-      class="d-md-none text-white mr-2"
-      @click="drawer = !drawer"
-    >
-      <v-icon>mdi-menu</v-icon>
-    </v-btn>
+    </nav>
+    --->
   </v-app-bar>
-
-  <!-- Mobile Drawer -->
-  <v-navigation-drawer
-    v-model="drawer"
-    temporary
-    right
-    class="head"
-  >
-    <v-list>
-      <v-list-item
-        v-for="(item, i) in menuItems"
-        :key="i"
-        :to="item.to"
-        link
-      >
-        <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>{{ item.title }}</v-list-item-title>
-      </v-list-item>
-    </v-list>
-  </v-navigation-drawer>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const drawer = ref(false)
-
+import { useRoute } from 'vue-router';
+const emit = defineEmits(['toggle-drawer']);
+const route = useRoute();
 const menuItems = [
   { title: 'Home', to: '/', icon: 'mdi-home' },
-  { title: 'Ethiopian Calendar', to: '/EthiopiaCalendar', icon: 'mdi-calendar' },
+  { title: 'Ethiopian Calendar', to: '/Ethiopia-Calendar', icon: 'mdi-calendar' },
   { title: 'Converter', to: '/Converter', icon: 'mdi-sync' },
-  { title: 'Holidays', to: '/Holidays', icon: 'mdi-party-popper' }
-]
+  { title: 'Holidays', to: '/Holidays', icon: 'mdi-party-popper' },
+];
 </script>
 
 <style scoped>
-.head {
-  background: linear-gradient(135deg, #2C5F2D 0%, #FCD116 50%, #DA121A 100%); /* Ethiopian flag colors */
-}
-
-.app-title {
-  font-size: 1.25rem;
-  font-weight: 600;
+.app-header {
+  background-color: rgba(15, 71, 175, 0.85); /* #0F47AF with transparency */
+  backdrop-filter: blur(8px);
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 0 16px;
 }
 
 .nav-link {
-  margin: 0 12px;
-  color: white;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 18px;
   font-weight: 500;
+  font-size: 0.95rem;
   text-decoration: none;
-  transition: opacity 0.3s;
+  transition: color 0.3s ease;
+  position: relative;
+  padding-bottom: 4px;
 }
 
 .nav-link:hover {
-  opacity: 0.8;
+  color: white;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background-color: white;
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Active link style */
+.nav-link.router-link-active {
+  color: white;
+  font-weight: 600;
+}
+
+.nav-link.router-link-active::after {
+  width: 100%;
 }
 </style>

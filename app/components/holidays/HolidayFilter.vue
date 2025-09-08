@@ -30,7 +30,7 @@ const filterOptions = [
     >
       <v-chip
         v-for="option in filterOptions"
-        :key="option.value"
+        :key="option.value" m
         :value="option.value"
         class="px-sm-6"
       >

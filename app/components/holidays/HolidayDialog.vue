@@ -9,7 +9,14 @@
       </v-card-title>
       <v-card-text>
         <div class="text-subtitle-1 text-blue-grey-darken-2 mb-2">{{ holiday?.title?.am }}</div>
-        <p><strong>Date:</strong> {{ holiday?.ethiopianDate }} ({{ holiday?.gregorianDate }})</p>
+        <p v-if="holiday">
+          <strong>Date:</strong> 
+          {{ holiday.gregorianDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) }}
+          <br>
+          <span class="text-grey-darken-1">
+            ({{ monthName(holiday.ethiopianDate.month) }} {{ holiday.ethiopianDate.day }}, {{ holiday.ethiopianDate.year }})
+          </span>
+        </p>
         <p><strong>Day:</strong> {{ holiday?.dayOfWeek }}</p>
         <p><strong>Category:</strong> {{ holiday?.category }}</p>
         <v-divider class="my-4" />
@@ -29,10 +36,8 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue"]);
 
-// Local copy of modelValue
 const localModel = ref(props.modelValue);
 
-// Keep localModel in sync with parent prop
 watch(
   () => props.modelValue,
   (newVal) => {
@@ -40,7 +45,6 @@ watch(
   }
 );
 
-// Emit back changes when v-dialog updates
 watch(localModel, (newVal) => {
   emit("update:modelValue", newVal);
 });
@@ -48,4 +52,13 @@ watch(localModel, (newVal) => {
 function closeDialog() {
   localModel.value = false;
 }
+
+const ethiopianMonths = [
+  'Meskerem', 'Tekemt', 'Hidar', 'Tahsas', 'Tir', 'Yekatit',
+  'Megabit', 'Miyazya', 'Ginbot', 'Sene', 'Hamle', 'Nehase', 'Pagume'
+];
+
+const monthName = (month) => {
+  return ethiopianMonths[month - 1];
+};
 </script>

@@ -1,86 +1,113 @@
 <template>
-  <v-footer app>
-    <v-row justify="center" no-gutters>
-      <v-col class="text-center" cols="12">
-        {{ new Date().getFullYear() }} — <strong>Calendar Converter</strong>
+  <v-container>
+    <v-row class="text-center text-md-left">
+      <!-- Logo and Brand -->
+      <v-col cols="12" md="3">
+        <div class="d-flex align-center justify-center justify-md-start mb-4">
+          <v-avatar tile class="mr-3">
+            <v-img src="/logo.jpg" alt="Ethiopian Calendar Logo"></v-img>
+          </v-avatar>
+          <div class="text-h6 font-weight-bold">ET Calendar</div>
+        </div>
+        <p class="text-body-2 text-grey-darken-1">
+          Your guide to Ethiopian dates, holidays, and time.
+        </p>
+      </v-col>
+
+      <!-- Spacer -->
+      <v-col md="1" class="d-none d-md-block"></v-col>
+
+      <!-- Link Sections -->
+      <v-col cols="12" md="8">
+        <v-row>
+          <v-col cols="12" sm="4" md="4">
+            <div class="text-h6 font-weight-bold mb-4">Navigate</div>
+            <ul class="footer-links">
+              <li><NuxtLink to="/Ethiopia-Calendar">Calendar</NuxtLink></li>
+              <li><NuxtLink to="/converter">Converter</NuxtLink></li>
+              <li><NuxtLink to="/Holidays">Holidays</NuxtLink></li>
+              <li><NuxtLink to="/Ethiopia-Time">Time</NuxtLink></li>
+            </ul>
+          </v-col>
+
+          <v-col cols="12" sm="4" md="4">
+            <div class="text-h6 font-weight-bold mb-4">About</div>
+            <ul class="footer-links">
+              <li><NuxtLink to="/About-Us">About Us</NuxtLink></li>
+              <li><NuxtLink to="/Ethiopian-Calendar-Facts">Calendar Facts</NuxtLink></li>
+              <li><NuxtLink to="/Contact-Us">Contact</NuxtLink></li>
+            </ul>
+          </v-col>
+
+          <v-col cols="12" sm="4" md="4">
+            <div class="text-h6 font-weight-bold mb-4">Legal</div>
+            <ul class="footer-links">
+              <li><NuxtLink to="/Terms-Conditions">Terms</NuxtLink></li>
+              <li><NuxtLink to="/Privacy-Policy">Privacy</NuxtLink></li>
+            </ul>
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
-  </v-footer>
+
+    <v-divider class="my-6"></v-divider>
+
+    <v-row align="center">
+      <v-col cols="12" md="6" class="text-center text-md-left">
+        <div class="text-body-2 text-grey-darken-2">
+          &copy; {{ new Date().getFullYear() }} Ethiopian Calendar. All rights reserved.
+        </div>
+      </v-col>
+
+      <v-col cols="12" md="6" class="text-center text-md-right">
+        <div>
+          <v-btn
+            v-for="social in socials"
+            :key="social.icon"
+            :href="social.url"
+            target="_blank"
+            rel="noopener"
+            icon
+            variant="text"
+            color="grey-darken-1"
+            class="mx-1"
+          >
+            <v-icon :icon="social.icon" size="22"></v-icon>
+          </v-btn>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
+
 <script setup lang="ts">
+const socials = [
+  { icon: "mdi-facebook", url: "https://facebook.com" },
+  { icon: "mdi-twitter", url: "https://twitter.com" },
+  { icon: "mdi-linkedin", url: "https://linkedin.com" },
+  { icon: "mdi-telegram", url: "https://t.me" },
+];
 </script>
-<!--
 
-// app/composables/useEthiopianCalendar.ts
-import { ref, computed, onMounted, onBeforeUnmount } from "vue";
-
-
-// Ethiopian months in Amharic
-const ETH_MONTHS_AM = [
-  "መስከረም","ጥቅምት","ህዳር","ታኅሣሥ",
-  "ጥር","የካቲት","መጋቢት","ሚያዝያ",
-  "ግንቦት","ሰኔ","ሐምሌ","ነሐሴ","ጳጉሜ"
-];
-
-// Weekdays in Amharic (starting Sunday)
-const ETH_WEEKDAYS_AM = [
-  "እሁድ","ሰኞ","ማክሰኞ","ረቡዕ","ኀሙስ","ዓርብ","ቅዳሜ"
-];
-
-export function useEthiopianCalendar() {
-  const now = ref(new Date());
-
-  // Update every second
-  let timer: number | null = null;
-  onMounted(() => {
-    timer = window.setInterval(() => {
-      now.value = new Date();
-    }, 1000);
-  });
-  onBeforeUnmount(() => {
-    if (timer) window.clearInterval(timer);
-  });
-
-  // Ethiopian date with weekday in Amharic
-  //const ethiopianDate = computed(() => {
-    //const etDate = EtDatetime.fromGregorianDate(now.value);
-    //const weekday = ETH_WEEKDAYS_AM[now.value.getDay()]; // JS weekday 0=Sun
-   // return `${weekday}, ${etDate.date} ${ETH_MONTHS_AM[etDate.month - 1]} ${etDate.year}`;
-//  });
-
-
-  // Ethiopian local time (6-hour offset)
-  const ethiopianTime = computed(() => {
-    let h = now.value.getHours() - 6;
-    if (h <= 0) h += 12;
-    if (h > 12) h -= 12;
-    const m = now.value.getMinutes().toString().padStart(2, "0");
-    const s = now.value.getSeconds().toString().padStart(2, "0");
-    return `${h}:${m}:${s}`;
-  });
-
-  // Gregorian date
-  const gregorianDate = computed(() =>
-    now.value.toLocaleDateString("en-US", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    })
-  );
-
-  // Gregorian time
-  const gregorianTime = computed(() =>
-    now.value.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: true,
-    })
-  );
-
-  return { ethiopianTime, gregorianDate, gregorianTime };
+<style scoped>
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
+.footer-links a {
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+  color: #555;
+}
 
--->
+.footer-links a:hover {
+  color: rgb(var(--v-theme-primary));
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+</style>
