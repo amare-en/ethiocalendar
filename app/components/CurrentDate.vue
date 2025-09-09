@@ -9,7 +9,6 @@
         Live updates of Ethiopian & Gregorian calendar
       </p>
     </div>
-
     <!-- Ethiopian & Gregorian Dates -->
     <v-row class="mt-10" dense>
       <!-- Ethiopian Date -->

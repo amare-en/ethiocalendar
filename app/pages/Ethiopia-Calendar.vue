@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="pa-4">
+  <v-container>
     <v-row class="mb-6 align-center justify-center">
       <v-col cols="12" class="d-flex justify-center align-center">
         <v-btn icon @click="prevYear" variant="text" color="primary">
@@ -15,7 +15,6 @@
         </v-btn>
       </v-col>
     </v-row>
-    
     <v-divider class="my-3" />
     
     <v-row>

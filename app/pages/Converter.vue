@@ -1,5 +1,5 @@
 <template>
-  <v-container class="py-12">
+  <v-container>
     <v-row justify="center" class="border rounded-lg pa-4">
       <v-col cols="12" md="10" lg="8">
         <!-- Wrapper Card -->

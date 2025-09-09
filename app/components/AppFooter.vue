@@ -7,9 +7,9 @@
           <v-avatar tile class="mr-3">
             <v-img src="/logo.jpg" alt="Ethiopian Calendar Logo"></v-img>
           </v-avatar>
-          <div class="text-h6 font-weight-bold">ET Calendar</div>
+          <div class="text-h6 font-weight-bold  title-text">Ethiopian Calendar</div>
         </div>
-        <p class="text-body-2 text-grey-darken-1">
+        <p class="text-body-2 copy">
           Your guide to Ethiopian dates, holidays, and time.
         </p>
       </v-col>
@@ -21,7 +21,7 @@
       <v-col cols="12" md="8">
         <v-row>
           <v-col cols="12" sm="4" md="4">
-            <div class="text-h6 font-weight-bold mb-4">Navigate</div>
+            <div class="text-h6 font-weight-bold mb-4 title-text ">Navigate</div>
             <ul class="footer-links">
               <li><NuxtLink to="/Ethiopia-Calendar">Calendar</NuxtLink></li>
               <li><NuxtLink to="/converter">Converter</NuxtLink></li>
@@ -31,7 +31,7 @@
           </v-col>
 
           <v-col cols="12" sm="4" md="4">
-            <div class="text-h6 font-weight-bold mb-4">About</div>
+            <div class="text-h6 font-weight-bold mb-4  title-text">About</div>
             <ul class="footer-links">
               <li><NuxtLink to="/About-Us">About Us</NuxtLink></li>
               <li><NuxtLink to="/Ethiopian-Calendar-Facts">Calendar Facts</NuxtLink></li>
@@ -40,7 +40,7 @@
           </v-col>
 
           <v-col cols="12" sm="4" md="4">
-            <div class="text-h6 font-weight-bold mb-4">Legal</div>
+            <div class="text-h6 font-weight-bold mb-4 title-text">Legal</div>
             <ul class="footer-links">
               <li><NuxtLink to="/Terms-Conditions">Terms</NuxtLink></li>
               <li><NuxtLink to="/Privacy-Policy">Privacy</NuxtLink></li>
@@ -54,7 +54,7 @@
 
     <v-row align="center">
       <v-col cols="12" md="6" class="text-center text-md-left">
-        <div class="text-body-2 text-grey-darken-2">
+        <div class="text-body-2 copy">
           &copy; {{ new Date().getFullYear() }} Ethiopian Calendar. All rights reserved.
         </div>
       </v-col>
@@ -67,9 +67,9 @@
             :href="social.url"
             target="_blank"
             rel="noopener"
+            color="primary"
             icon
-            variant="text"
-            color="grey-darken-1"
+            variant="text"           
             class="mx-1"
           >
             <v-icon :icon="social.icon" size="22"></v-icon>
@@ -100,7 +100,8 @@ const socials = [
   text-decoration: none;
   font-size: 0.95rem;
   transition: color 0.2s ease;
-  color: #555;
+  color: var( --ethiopian-blue)
+
 }
 
 .footer-links a:hover {
@@ -110,4 +111,11 @@ const socials = [
 .footer-links li {
   margin-bottom: 12px;
 }
+.title-text{
+  color:var(--primary-color);
+}
+.copy {
+  color: var(--ethiopian-blue);
+  font-size: 0.8rem;}
 </style>
+
