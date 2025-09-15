@@ -23,6 +23,7 @@
         <!-- Main Content -->
         <v-main class="flex-grow-1 bg-surface">
           <v-container fluid class="py-6 ">
+             <!--<v-breadcrumbs :items="items"></v-breadcrumbs>-->
             <v-row>
               <v-col cols="12">
                 <slot />
@@ -47,6 +48,9 @@
   </v-app>
 </template>
 <script setup>
+//import { useBreadcrumbs } from '@/composables/useBreadcrumbs';
+
+//const { items } = useBreadcrumbs();
 import { ref, computed, watch } from "vue";
 import { useDisplay } from "vuetify";
 const { mobile } = useDisplay();

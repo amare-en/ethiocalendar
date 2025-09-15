@@ -11,7 +11,6 @@
         </p>
       </div>
       <v-divider class="mb-6" />
-
       <!-- Year Selector -->
       <v-row justify="center" class="mb-6">
         <v-col cols="12" sm="6" md="4">
@@ -63,9 +62,7 @@
           </template>
 
           <template v-slot:item.actions="{ item }">
-            <v-btn small @click="showDetails(item)">
-              Read More
-            </v-btn>
+          <Nuxt-Link to="/NewYear">Details</Nuxt-Link>
           </template>
         </v-data-table>
       </v-card>
@@ -75,6 +72,8 @@
     <HolidayDialog v-model="dialog" :holiday="selectedHoliday" />
   </v-container>
 </template>
+
+
 
 <script setup>
 import { useEthiopianHolidays } from '@/composables/useEthiopianHolidays';
@@ -106,6 +105,8 @@ const ethiopianMonths = [
 const monthName = (month) => {
   return ethiopianMonths[month - 1];
 };
+// This defines the breadcrumb title for this page
+
 </script>
 
 <style scoped>

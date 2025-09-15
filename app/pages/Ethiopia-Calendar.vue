@@ -15,8 +15,8 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-divider class="my-3" />
-    
+   
+
     <v-row>
       <v-col cols="12" class="d-flex justify-end">
         <v-switch
@@ -41,9 +41,13 @@
           :year="selectedYear" 
           :month="month" 
           :show-gregorian="showGregorian"
+          :holidays="holidays"
         />
       </v-col>
     </v-row>
+     <v-divider class="my-3" />
+
+    <HolidaysInThatYear :year="selectedYear" :holidays="holidays" />
   </v-container>
 </template>
 
@@ -51,6 +55,8 @@
 import { ref } from 'vue';
 import { getCurrentEthiopianDate } from '~/utils/ethiopianDate';
 import CalendarGrid from '~/components/calendar/CalendarGrid.vue';
+import HolidaysInThatYear from '~/components/holidays/HolidaysInThatYear.vue';
+import { useEthiopianHolidays } from '~/composables/useEthiopianHolidays';
 
 // Get today's Ethiopian year
 const todayEth = getCurrentEthiopianDate();
@@ -58,6 +64,9 @@ const selectedYear = ref(todayEth.year);
 
 // State for the Gregorian date toggle
 const showGregorian = ref(true);
+
+// Holidays
+const { holidays } = useEthiopianHolidays(selectedYear);
 
 // Navigation
 const prevYear = () => {

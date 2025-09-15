@@ -58,22 +58,14 @@ const props = defineProps<{
   year: number;
   month: number;
   showGregorian: boolean;
+  holidays: any[];
 }>();
 
 const selectedDate = ref<Day | null>(null);
 const monthName = computed(() => getEthiopianMonthName(props.month));
 const weekDays = computed(() => Array.from({ length: 7 }, (_, i) => getEthiopianDayName(i)));
 
-// Hardcoded holiday data for demonstration. 
-// In a real application, you would fetch this data dynamically.
-const holidays = computed(() => [
-  // Ethiopian New Year
-  { year: 2017, month: 1, day: 1 }, 
-  // Meskel
-  { year: 2017, month: 1, day: 17 }, 
-  // Christmas
-  { year: 2017, month: 4, day: 29 }, 
-]);
+
 
 const calendarGrid = computed(() => {
   const daysInMonth = getEthiopianMonthDays(props.year, props.month);
@@ -128,7 +120,7 @@ function isSelected(day: Day | null): boolean {
 
 function isHoliday(day: Day | null): boolean {
   if (!day) return false;
-  return holidays.value.some(
+  return props.holidays.some(
     (holiday) =>
       holiday.year === day.ethiopian.year &&
       holiday.month === day.ethiopian.month &&
