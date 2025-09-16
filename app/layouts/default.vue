@@ -22,7 +22,7 @@
 
         <!-- Main Content -->
         <v-main class="flex-grow-1 bg-surface">
-          <v-container fluid class="py-6 ">
+          <v-container  class="py-6 ">
              <!--<v-breadcrumbs :items="items"></v-breadcrumbs>-->
             <v-row>
               <v-col cols="12">
@@ -70,7 +70,8 @@ watch(isMobile, (newVal) => {
 
 /* subtle background for the main content */
 .bg-surface {
-  background-color: #fdfdfd;
+  background-color: #FCFCFC;
+ 
 }
 
 /* smooth transition when drawer opens/closes */

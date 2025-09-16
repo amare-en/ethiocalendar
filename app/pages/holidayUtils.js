@@ -67,7 +67,7 @@ export function getHolidaysForYear(etYear) {
     { title: { am: 'የገና በዓል', en: 'Ethiopian Christmas' }, date: { month: 4, day: 29 }, category: 'Religious', description: 'Celebrates the birth of Jesus Christ.', detail:'/EthiopiaChristmas'},
     { title: { am: 'ጥምቀት', en: 'Epiphany' }, date: { month: 5, day: 11 }, category: 'Religious', description: 'Celebrates the baptism of Jesus.', detail:'/EthiopiaEpiphany'},
     { title: { am: 'የአድዋ ድል በዓል', en: 'Adwa Victory Day' }, date: { month: 6, day: 23 }, category: 'National', description: 'Commemorates the Battle of Adwa.', detail:'/AdwaVictoryDay'},
-    { title: { am: 'ዓለም አቀፍ የሠራተኞች ቀን', en: 'International Labor Day' }, date: { month: 8, day: 23 }, category: 'National', description: 'Celebrates workers achievements.', detail:'/InternationalLaborDay'},
+    { title: { am: 'ዓለም አቀፍ የሠራተኞች ቀን', en: 'International Labor Day' }, date: { month: 8, day: 23 }, category: 'National', description: 'Celebrates workers achievements.', detail:'/LaborDay'},
     { title: { am: 'የአርበኞች ቀን', en: 'Patriots\' Victory Day' }, date: { month: 8, day: 27 }, category: 'National', description: 'Commemorates the end of Italian occupation.', detail:'/PatriotsVictoryDay'},
     { title: { am: 'የደርግ መውደቅ', en: 'Downfall of the Derg' }, date: { month: 9, day: 20 }, category: 'National', description: 'Marks the end of the Derg regime.', detail:'/DownfallOfDerg' },
   ];

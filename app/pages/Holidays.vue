@@ -1,6 +1,6 @@
 <template>
-  <v-container class="py-8">
-    <v-sheet class="mx-auto pa-6 pa-sm-10 holiday-container">
+  <v-container class="py-8 ">
+    <v-sheet class="mx-auto pa-6 pa-sm-10 holiday-container  border rounded-lg pa-4">
       <!-- Header -->
       <div class="text-center mb-6">
         <h2 class="text-h4 font-weight-bold mb-2 holiday-title">
@@ -61,9 +61,15 @@
             </v-chip>
           </template>
 
-          <template v-slot:item.actions="{ item }">
-          <Nuxt-Link to="/NewYear">Details</Nuxt-Link>
-          </template>
+        
+        <!-- Actions -->
+        <template v-slot:item.actions="{ item }">
+          <NuxtLink :to="item.detail">
+            <v-btn size="small" variant="text" color="primary">
+              Details
+            </v-btn>
+          </NuxtLink>
+        </template>
         </v-data-table>
       </v-card>
     </v-sheet>
@@ -90,7 +96,7 @@ const {
 } = useEthiopianHolidays();
 
 const headers = [
-  { title: 'Holiday Name', value: 'name', sortable: true },
+  { title: 'Holiday Name', value: 'name', sortable: true},
   { title: 'Date', value: 'date', sortable: true },
   { title: 'Day', value: 'day', sortable: false },
   { title: 'Category', value: 'category', sortable: true },
