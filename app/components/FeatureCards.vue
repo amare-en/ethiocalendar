@@ -36,19 +36,19 @@ const feature = ref([
     title: 'Ethiopian Calendar',
     description:
       'The Ethiopian calendar is a solar calendar based on the ancient Coptic calendar, consisting of 13 months: 12 months of 30 days each and a 13th month of 5 or 6 days.',
-    link: 'https://example.com',
+    link: 'http://localhost:3001/Ethiopia-Calendar',
   },
   {
     title: 'Ethiopian Holidays',
     description:
       'Explore national and religious holidays in the Ethiopian calendar.',
-    link: 'https://example.com',
+    link: 'http://localhost:3001/Holidays',
   },
   {
     title: 'Ethiopian Date Converter',
     description:
       'Easily convert dates between the Gregorian and Ethiopian calendars with our converter tool.',
-    link: 'https://example.com',
+    link: 'http://localhost:3001/converter',
   },
 ])
 </script>

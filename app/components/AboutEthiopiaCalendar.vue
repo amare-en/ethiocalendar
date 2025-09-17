@@ -12,7 +12,7 @@
       </p>
       <p>
         The Ethiopian calendar is approximately 7-8 years behind the Gregorian calendar, depending on the time of year.
-        <NuxtLink to="#" class="text-primary text-decoration-none d-inline-flex align-center">
+        <NuxtLink to="/About-Ethiopian-Calendar" class="text-primary text-decoration-none d-inline-flex align-center">
           Read More
           <v-icon icon="mdi-chevron-right" size="small" class="ml-1"></v-icon>
         </NuxtLink>

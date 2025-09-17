@@ -19,9 +19,11 @@ const menuItems = [
   { title: 'Ethiopian Time', link: '/Ethiopia-Time', icon: 'mdi-clock-time-four-outline' },
   { title: 'Current Ethiopia Date', link: '/Current-Ethiopia-Date', icon: 'mdi-calendar-check-outline' },
   { title: 'Holidays', link: '/Holidays', icon: 'mdi-party-popper' },
-  { title: 'Calendar Widget', link: '/holidayet', icon: 'mdi-calendar-today' },
-  { title: 'Printable Calendar', link: '/Printable-Calendar', icon: 'mdi-printer-outline' },
-  { title: 'Ethiopia Weather', link: '/About', icon: 'mdi-weather-cloudy' },
-  { title: 'Exchange Rates', link: '/ExchangeRates', icon: 'mdi-currency-usd' },
+  
+  //{ title: 'Calendar Widget', link: '/holidayet', icon: 'mdi-calendar-today' },
+  //{ title: 'Printable Calendar', link: '/Printable-Calendar', icon: 'mdi-printer-outline' },
+  //{ title: 'Ethiopia Weather', link: '/About', icon: 'mdi-weather-cloudy' },
+  //{ title: 'Exchange Rates', link: '/ExchangeRates', icon: 'mdi-currency-usd' },
+  
 ];
 </script>

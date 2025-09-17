@@ -46,8 +46,8 @@
       </v-col>
     </v-row>
      <v-divider class="my-3" />
-
-    <HolidaysInThatYear :year="selectedYear" :holidays="holidays" />
+<!--
+    <HolidaysInThatYear :year="selectedYear" :holidays="holidays" />-->
   </v-container>
 </template>
 
@@ -55,7 +55,7 @@
 import { ref } from 'vue';
 import { getCurrentEthiopianDate } from '~/utils/ethiopianDate';
 import CalendarGrid from '~/components/calendar/CalendarGrid.vue';
-import HolidaysInThatYear from '~/components/holidays/HolidaysInThatYear.vue';
+//import HolidaysInThatYear from '~/components/holidays/HolidaysInThatYear.vue';
 import { useEthiopianHolidays } from '~/composables/useEthiopianHolidays';
 
 // Get today's Ethiopian year
