@@ -14,7 +14,7 @@
     <v-row dense>
       <!-- Ethiopian Time -->
       <v-col cols="12" md="6">
-        <div class="glass-card p-8 rounded-3xl shadow-xl hover:shadow-2xl transition duration-300 text-center">
+        <div class="glass-card p-8 rounded-3xl shadow-xl hover:shadow-2xl transition duration-300 text-center border pa-4 rounded-lg">
           <v-icon
             icon="mdi-clock-time-four-outline"
             size="40"
@@ -36,7 +36,7 @@
 
       <!-- Gregorian Time -->
       <v-col cols="12" md="6">
-        <div class="glass-card p-8 rounded-3xl shadow-xl hover:shadow-2xl transition duration-300 text-center">
+        <div class="glass-card p-8 rounded-3xl shadow-xl hover:shadow-2xl transition duration-300 text-center border pa-4 rounded-lg">
           <v-icon
             icon="mdi-clock-time-four-outline"
             size="40"
