@@ -20,12 +20,23 @@
             label="Select Year"
             outlined
             dense
+            :disabled="pending"
           ></v-select>
         </v-col>
       </v-row>
+      <!-- Error Alert -->
+      <v-alert v-if="error" type="error" class="mb-6" prominent>
+        {{ error.message }}
+      </v-alert>
+
+      <!-- Loading Indicator -->
+      <div v-if="pending" class="text-center py-10">
+        <v-progress-circular indeterminate color="primary" size="64"></v-progress-circular>
+        <p class="mt-4 text-subtitle-1">Loading Holidays...</p>
+      </div>
 
       <!-- Holidays Table -->
-      <v-card flat>
+      <v-card flat v-if="!pending && !error && holidays">
         <v-data-table
           :headers="headers"
           :items="holidays"
@@ -55,13 +66,15 @@
             <span>{{ item.dayOfWeek }}</span>
           </template>
 
+          <template v-slot:item.description="{ item }">
+            <span class="text-caption">{{ item.description }}</span>
+          </template>
+
           <template v-slot:item.category="{ item }">
             <v-chip :color="getCategoryColor(item.category)" small>
               {{ item.category }}
             </v-chip>
           </template>
-
-        
         <!-- Actions -->
         <template v-slot:item.actions="{ item }">
           <NuxtLink :to="item.detail">
@@ -73,58 +86,39 @@
         </v-data-table>
       </v-card>
     </v-sheet>
-
-    <!-- Holiday Details Dialog -->
-    <HolidayDialog v-model="dialog" :holiday="selectedHoliday" />
   </v-container>
 </template>
 
-
-
 <script setup>
 import { useEthiopianHolidays } from '@/composables/useEthiopianHolidays';
-import HolidayDialog from '@/components/holidays/HolidayDialog.vue';
 import { getCategoryColor } from '@/utils/holidayUtils';
-
-const {
-  selectedYear,
-  holidays,
-  availableYears,
-  dialog,
-  selectedHoliday,
-  showDetails,
+import { getEnglishEthiopianMonthName as monthName } from '@/utils/dateUtils';
+const { 
+  selectedYear, 
+  holidays, 
+  availableYears, 
+  pending, 
+  error 
 } = useEthiopianHolidays();
 
 const headers = [
-  { title: 'Holiday Name', value: 'name', sortable: true},
-  { title: 'Date', value: 'date', sortable: true },
-  { title: 'Day', value: 'day', sortable: false },
-  { title: 'Category', value: 'category', sortable: true },
-  { title: 'Actions', value: 'actions', sortable: false },
+  { title: 'Holiday Name', value: 'name', sortable: true, width: '20%'},
+  { title: 'Date', value: 'date', sortable: true, width: '20%' },
+  { title: 'Day', value: 'day', sortable: false, width: '10%' },
+  { title: 'Description', value: 'description', sortable: false, width: '30%' },
+  { title: 'Category', value: 'category', sortable: true, width: '10%' },
+  { title: 'Actions', value: 'actions', sortable: false, width: '10%' },
 ];
-
-const ethiopianMonths = [
-  'Meskerem', 'Tekemt', 'Hidar', 'Tahsas', 'Tir', 'Yekatit',
-  'Megabit', 'Miyazya', 'Ginbot', 'Sene', 'Hamle', 'Nehase', 'Pagume'
-];
-
-const monthName = (month) => {
-  return ethiopianMonths[month - 1];
-};
-// This defines the breadcrumb title for this page
-
 </script>
 
 <style scoped>
 .holiday-container {
   background: #f9f9f9;
 }
-
 .holiday-title {
   font-family: 'Inter', sans-serif;
   letter-spacing: 0.5px;
 }
-
 .v-data-table {
   background: #ffffff;
 }

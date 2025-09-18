@@ -33,6 +33,17 @@ export function getEthiopianMonthName(month) {
   return monthNames[month - 1] || '';
 }
 
+// Add English month names for broader use
+export const ethiopianMonths = [
+  'Meskerem', 'Tekemt', 'Hidar', 'Tahsas', 'Tir', 'Yekatit',
+  'Megabit', 'Miyazya', 'Ginbot', 'Sene', 'Hamle', 'Nehase', 'Pagume'
+];
+
+// Get English Ethiopian month names
+export function getEnglishEthiopianMonthName(month) {
+  return ethiopianMonths[month - 1] || '';
+}
+
 // Get Ethiopian day names
 export function getEthiopianDayName(dayIndex) {
   const dayNames = [

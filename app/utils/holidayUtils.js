@@ -19,19 +19,19 @@ function islamicToGregorian(hYear, hMonth, hDay) {
 
 function getIslamicHolidays(year) {
     const holidays = {
-        "Mawlid al-Nabi": { month: 3, day: 12, am: 'መውሊድ' },
-        "Eid al-Fitr": { month: 10, day: 1, am: 'ኢድ አል-ፈጥር' },
-        "Eid al-Adha": { month: 12, day: 10, am: 'አረፋ' },
+        "Mawlid al-Nabi": { month: 3, day: 12, am: 'መውሊድ', description: 'Birth of the Prophet Muhammad.' },
+        "Eid al-Fitr": { month: 10, day: 1, am: 'ኢድ አል-ፈጥር', description: 'End of Ramadan.' },
+        "Eid al-Adha": { month: 12, day: 10, am: 'ኢድ አል-አድሐ (አረፋ)', description: 'Feast of Sacrifice.' },
     };
     const results = {};
     const hijriYear = Math.round((year - 622) * 33 / 32);
-    for (const hijriCheckYear of [hijriYear, hijriYear + 1]) {
+    for (const hijriCheckYear of [hijriYear - 1, hijriYear]) {
         for (const holidayName in holidays) {
             const holidayInfo = holidays[holidayName];
             const gregorianDate = islamicToGregorian(hijriCheckYear, holidayInfo.month, holidayInfo.day);
             if (gregorianDate.getFullYear() === year) {
                 const key = results[holidayName] ? `${holidayName} (2)` : holidayName;
-                results[key] = { date: gregorianDate, am: holidayInfo.am };
+                results[key] = { date: gregorianDate, am: holidayInfo.am, description: holidayInfo.description };
             }
         }
     }
@@ -103,14 +103,19 @@ export function getHolidaysForYear(etYear) {
   }
 
   // 3. Movable Islamic Holidays
-  const islamicHolidays = getIslamicHolidays(gregorianYearEnd);
+  const islamicHolidaysStart = getIslamicHolidays(gregorianYearStart);
+  const islamicHolidaysEnd = getIslamicHolidays(gregorianYearEnd);
+  const islamicHolidays = {...islamicHolidaysStart, ...islamicHolidaysEnd};
+
   for (const name in islamicHolidays) {
       const holidayData = islamicHolidays[name];
       const etDate = toEthiopian(holidayData.date.getFullYear(), holidayData.date.getMonth() + 1, holidayData.date.getDate());
       if (etDate[0] === etYear) {
           holidays.push({
-              title: { am: holidayData.am, en: name }, category: 'Religious',
-              description: `Islamic holiday. Date is an estimate and may vary based on moon sighting.`, 
+              title: { am: holidayData.am, en: name },
+              category: 'Religious',
+              description: `${holidayData.description} (Date is an estimate and may vary based on moon sighting.)`,
+              detail: `/${name.replace(/\s+/g, '')}`,
               ethiopianDate: { year: etDate[0], month: etDate[1], day: etDate[2] },
               gregorianDate: holidayData.date,
               dayOfWeek: holidayData.date.toLocaleDateString('en-US', { weekday: 'long' }),
