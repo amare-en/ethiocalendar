@@ -45,8 +45,8 @@ const menuItems = [
   { title: 'Home', to: '/', icon: 'mdi-home' },
   { title: 'Ethiopian Calendar', to: '/Ethiopia-Calendar', icon: 'mdi-calendar' },
   { title: 'Converter', to: '/Converter', icon: 'mdi-sync' },
-  { title: 'Current Ethiopian Date', to: '/Current-Ethiopia-Date', icon: 'mdi-information' },
-  { title: 'Time', to: '/Ethiopia-Time', icon: 'mdi-clock' },
+  { title: 'Current Ethiopian Date & Time', to: '/Current-Ethiopia-Date', icon: 'mdi-information' },
+  //{ title: 'Time', to: '/Ethiopia-Time', icon: 'mdi-clock' },
   { title: 'Holidays', to: '/Holidays', icon: 'mdi-party-popper' },
 ];
 </script>
