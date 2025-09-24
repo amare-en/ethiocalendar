@@ -4,7 +4,7 @@
       <v-col cols="12">
          <!-- Header -->
         <div class="text-center mb-10">
-  <h1 class="text-h4 font-weight-bold text-gradient mb-3">
+  <h1 class="text-h5 text-md-h4 font-weight-bold text-gradient mb-3">
     Ethiopian ↔ Gregorian Date Converter
   </h1>
   <p class="text-subtitle-1 text-medium-emphasis">

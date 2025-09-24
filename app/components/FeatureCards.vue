@@ -1,5 +1,4 @@
 <template>
-
     <v-row justify="center" class="g-8">
       <v-col
         v-for="(item, index) in feature"
@@ -18,7 +17,7 @@
               target="_blank"
               color="primary"
               variant="flat"
-              class="p-5"
+              class="p-4 mt-4 text-white rounded-lg"
             >
               Learn More
             </v-btn>
