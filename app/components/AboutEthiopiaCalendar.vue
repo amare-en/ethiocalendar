@@ -2,7 +2,7 @@
   <v-row justify="center" class="my-8">
   <v-col cols="12" md="10" lg="8" class="py-6 px-4">
     <!-- Improved heading with proper alignment and spacing -->
-    <h2 class="text-h4 text-center mb-6 font-weight-bold text-primary">
+    <h2 class="text-h4 text-center mb-6 font-weight-bold text-blue-darken-3">
       About the Ethiopian Calendar
     </h2>
     <!-- Content with better typography and spacing -->

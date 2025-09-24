@@ -1,17 +1,18 @@
 <template>
-  <v-container class="py-12 px-4 px-md-12">
+  <v-container class="py-10 px-4 px-md-12">
     <v-row justify="center">
       <v-col cols="12" md="10" lg="8">
-        <v-card class="pa-8 rounded-xl elevation-2">
           <!-- Header -->
           <div class="text-center mb-10">
-            <h1 class="text-h4 text-md-h3 font-weight-bold mb-4 text-blue-darken-3">
+            <h2 class="text-h4 text-md-h3 font-weight-bold mb-4 text-blue-darken-3">
               Terms & Conditions
-            </h1>
+            </h2>
             <p class="text-body-1 text-medium-emphasis">
               Welcome to <strong>[Your App Name]</strong>. By using our app, you agree to the following terms and conditions.
             </p>
           </div>
+        <div class="pa-4 rounded-lg border">
+        
 
           <!-- Section 1 -->
           <div class="mb-8">
@@ -76,7 +77,7 @@
               &copy; {{ new Date().getFullYear() }} [Your App Name]. All rights reserved.
             </p>
           </div>
-        </v-card>
+        </div>
       </v-col>
     </v-row>
   </v-container>

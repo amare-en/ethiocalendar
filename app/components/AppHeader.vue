@@ -17,7 +17,7 @@
               <h2 class="text-h5 font-weight-bold mb-0 text-white">
                የኢትዮጵያ ቀን መቁጠሪያ 
               </h2>
-              <p class="text-white text-body-2 mb-0">Ethiopian Calendar</p>
+              <p class="text-white font-weight-bold text-body-2 mb-0">Ethiopian Calendar</p>
             </div>
           </NuxtLink>
         </v-col>
@@ -76,23 +76,13 @@ const menuItems = [
 .nav-link:hover {
   color: white;
 }
-.nav-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 2px;
-  width: 0%;
-  background-color: white;
-  transition: width 0.3s ease;
-  border-radius: 2px;
-}
+
 .nav-link:hover::after {
   width: 100%;
 }
 /* Active link style */
 .nav-link.router-link-active {
-  color: white;
+  color:white;
   font-weight: 600;
 }
 .nav-link.router-link-active::after {

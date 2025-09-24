@@ -4,9 +4,9 @@
       <v-col cols="12" md="8">
         <!-- Page Title -->
         <div class="text-center mb-8">
-          <h1 class="text-h4 text-md-h3 font-weight-bold text-blue-darken-3 mb-4">
+          <h2 class="text-h4 text-md-h3 font-weight-bold text-blue-darken-3 mb-4">
             Privacy Policy
-          </h1>
+          </h2>
           <p class="text-body-1 text-medium-emphasis">
             Your privacy is important to us at <strong>[Your App Name]</strong>. 
             This Privacy Policy explains how we collect, use, and protect your information.
@@ -14,7 +14,7 @@
         </div>
 
         <!-- Card Wrapper for Sections -->
-        <v-card class="pa-6 rounded-xl elevation-2">
+        <div class="pa-4 rounded-lg border">
           <!-- Information We Collect -->
           <h2 class="text-h5 font-weight-bold mb-3 text-blue-darken-2">
             Information We Collect
@@ -56,7 +56,7 @@
             If you have any questions, please contact us at: 
             <strong>[your email]</strong>.
           </p>
-        </v-card>
+        </div>
       </v-col>
     </v-row>
   </v-container>

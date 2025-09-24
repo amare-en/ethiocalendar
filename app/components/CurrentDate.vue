@@ -2,7 +2,7 @@
   <v-container class="py-12">
     <!-- Title -->
     <div class="text-center">
-      <h1 class="text-h3 font-weight-bold text-gradient mb-2">
+      <h1 class="text-h4 font-weight-bold text-gradient mb-2">
         Current Date in Ethiopia
       </h1>
       <p class="text-subtitle-1 text-medium-emphasis">

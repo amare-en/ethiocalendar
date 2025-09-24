@@ -2,9 +2,9 @@
   <v-container class="py-10 px-4 px-md-12">
     <v-row justify="center">
       <v-col cols="12" md="8" class="text-center mb-8">
-        <h1 class="text-h4 text-md-h3 font-weight-bold text-blue-darken-3 mb-4">
+        <h2 class="text-h4 text-md-h3 font-weight-bold text-blue-darken-3 mb-4">
           Contact Us
-        </h1>
+        </h2>
         <p class="text-body-1 text-medium-emphasis">
           If you have any questions, suggestions, or feedback, please feel free to reach out to us. 
           We’d love to hear from you!
@@ -15,7 +15,7 @@
     <!-- Contact Form -->
     <v-row justify="center">
       <v-col cols="12" md="6">
-        <v-card class="pa-6 rounded-xl elevation-2">
+        <div class="pa-4 rounded-lg border">
           <v-form>
             <v-text-field
               label="Full Name"
@@ -25,7 +25,6 @@
               required
               class="mb-4"
             ></v-text-field>
-
             <v-text-field
               label="Email Address"
               type="email"
@@ -35,7 +34,6 @@
               required
               class="mb-4"
             ></v-text-field>
-
             <v-textarea
               label="Your Message"
               rows="5"
@@ -53,7 +51,7 @@
               Send Message
             </v-btn>
           </v-form>
-        </v-card>
+        </div>
       </v-col>
     </v-row>
 
@@ -67,6 +65,5 @@
     </v-row>
   </v-container>
 </template>
-
 <script setup>
 </script>
