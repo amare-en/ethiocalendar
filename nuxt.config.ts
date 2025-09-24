@@ -12,8 +12,10 @@ compatibilityDate: '2023-10-01',
         themes: {
           light: {
             colors: {
-              primary: '#1867C0',
+              primary: '#23629F',
               secondary: '#5CBBF6',
+              accent: '#C01867',
+              error: '#FF5252',
             },
           },
         },

@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="box">
     <v-row class="text-center text-md-left">
       <!-- Logo and Brand -->
       <v-col cols="12" md="3">
@@ -13,10 +13,8 @@
           Your guide to Ethiopian dates, holidays, and time.
         </p>
       </v-col>
-
       <!-- Spacer -->
       <v-col md="1" class="d-none d-md-block"></v-col>
-
       <!-- Link Sections -->
       <v-col cols="12" md="8">
         <v-row>
@@ -90,12 +88,14 @@ const socials = [
 </script>
 
 <style scoped>
+.box{
+background-color: #FCFCFC;
+}
 .footer-links {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
 .footer-links a {
   text-decoration: none;
   font-size: 0.95rem;
@@ -118,4 +118,3 @@ const socials = [
   color: var(--ethiopian-blue);
   font-size: 0.8rem;}
 </style>
-

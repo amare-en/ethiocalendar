@@ -3,7 +3,7 @@
     <!-- Header -->
       <AppHeader/>
     <!-- Main Content -->
-    <v-main>
+    <v-main >
       <v-container class="py-6">
         <slot />
       </v-container>

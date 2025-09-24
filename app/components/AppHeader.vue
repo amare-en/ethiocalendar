@@ -13,7 +13,12 @@
               width="42"
               class="mr-2"
             />
-            <span class="text-h6 font-weight-bold">Ethiopian Calendar</span>
+            <div class="text-center">
+              <h2 class="text-h5 font-weight-bold mb-0 text-white">
+               የኢትዮጵያ ቀን መቁጠሪያ 
+              </h2>
+              <p class="text-white text-body-2 mb-0">Ethiopian Calendar</p>
+            </div>
           </NuxtLink>
         </v-col>
         <!-- Right: Navigation -->
