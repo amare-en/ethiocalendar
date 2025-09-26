@@ -6,15 +6,16 @@
         <!-- Left: Logo + Title -->
         <v-col cols="auto" class="d-flex align-center">
           <NuxtLink to="/" class="d-flex align-center text-decoration-none text-white">
+            
             <v-img
-              src="/logo2.png"
+              src="/logo.png"
               alt="Logo"
-              height="42"
-              width="42"
+              height="60"
+              width="60"
               class="mr-2"
             />
             <div class="text-center">
-              <h2 class="text-h5 font-weight-bold mb-0 text-white">
+              <h2 class="text-h6 font-weight-bold mb-0 text-white">
                የኢትዮጵያ ቀን መቁጠሪያ 
               </h2>
               <p class="text-white font-weight-bold text-body-2 mb-0">Ethiopian Calendar</p>

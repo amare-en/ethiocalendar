@@ -5,9 +5,9 @@
       <v-col cols="12" md="3">
         <div class="d-flex align-center justify-center justify-md-start mb-4">
           <v-avatar tile class="mr-3">
-            <v-img src="/logo.jpg" alt="Ethiopian Calendar Logo"></v-img>
+            <v-img src="/Footerlogo.png" alt="Ethiopian Calendar Logo"></v-img>
           </v-avatar>
-          <div class="text-h6 font-weight-bold  title-text">Ethiopian Calendar</div>
+          <div class="text-h6 font-weight-bold  title-text text-primary">Ethiopian Calendar</div>
         </div>
         <p class="text-body-2 copy">
           Your guide to Ethiopian dates, holidays, and time.
@@ -19,7 +19,7 @@
       <v-col cols="12" md="8">
         <v-row>
           <v-col cols="12" sm="4" md="4">
-            <div class="text-h6 font-weight-bold mb-4 title-text ">Navigate</div>
+            <div class="text-h6 font-weight-bold mb-4 title-text text-primary">Navigate</div>
             <ul class="footer-links">
               <li><NuxtLink to="/Ethiopia-Calendar">Calendar</NuxtLink></li>
               <li><NuxtLink to="/converter">Converter</NuxtLink></li>
@@ -29,7 +29,7 @@
           </v-col>
 
           <v-col cols="12" sm="4" md="4">
-            <div class="text-h6 font-weight-bold mb-4  title-text">About</div>
+            <div class="text-h6 font-weight-bold mb-4  title-text text-primary">About</div>
             <ul class="footer-links">
               <li><NuxtLink to="/About-Us">About Us</NuxtLink></li>
               <li><NuxtLink to="/Ethiopian-Calendar-Facts">Calendar Facts</NuxtLink></li>
@@ -38,7 +38,7 @@
           </v-col>
 
           <v-col cols="12" sm="4" md="4">
-            <div class="text-h6 font-weight-bold mb-4 title-text">Legal</div>
+            <div class="text-h6 font-weight-bold mb-4 title-text text-primary">Legal</div>
             <ul class="footer-links">
               <li><NuxtLink to="/Terms-Conditions">Terms</NuxtLink></li>
               <li><NuxtLink to="/Privacy-Policy">Privacy</NuxtLink></li>
@@ -52,7 +52,7 @@
 
     <v-row align="center">
       <v-col cols="12" md="6" class="text-center text-md-left">
-        <div class="text-body-2 copy">
+        <div class="text-body-2 copy text-primary">
           &copy; {{ new Date().getFullYear() }} Ethiopian Calendar. All rights reserved.
         </div>
       </v-col>

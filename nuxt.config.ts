@@ -1,6 +1,5 @@
 // nuxt.config.ts
 import { defineNuxtConfig } from 'nuxt/config'
-
 export default defineNuxtConfig({
 compatibilityDate: '2023-10-01',
   modules: ['vuetify-nuxt-module'],
@@ -13,7 +12,7 @@ compatibilityDate: '2023-10-01',
           light: {
             colors: {
               primary: '#23629F',
-              secondary: '#5CBBF6',
+              secondary:'#5CBBF6',
               accent: '#C01867',
               error: '#FF5252',
             },
@@ -21,6 +20,5 @@ compatibilityDate: '2023-10-01',
         },
       },
     },
-  },
-  // Other Nuxt 4 configuration options...
+  }, // Other Nuxt 4 configuration options...
 })
