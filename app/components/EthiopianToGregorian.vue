@@ -162,12 +162,23 @@ const onConvert = () => {
 // Formatted result
 const formattedGregorianDate = computed(() => {
   if (convertedToGregorian.value) {
-    return convertedToGregorian.value.toLocaleDateString("en-US", {
+    const date = convertedToGregorian.value;
+
+    // Full format
+    const fullDate = date.toLocaleDateString("en-US", {
       weekday: "long",
       day: "numeric",
       month: "long",
       year: "numeric",
     });
+
+    // Numeric format
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const numericDate = `${day}/${month}/${year}`;
+
+    return `${fullDate} or ${numericDate}`;
   }
   return "";
 });
