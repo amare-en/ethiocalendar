@@ -3,15 +3,15 @@ import { toEthiopian, toGregorian } from 'ethiopian-date';
 
 // Ethiopian months
 export const ETH_MONTHS = [
-  "መስከረም","ጥቅምት","ህዳር","ታኅሣሥ",
-  "ጥር","የካቲት","መጋቢት","ሚያዝያ",
-  "ግንቦት","ሰኔ","ሐምሌ","ነሐሴ","ጳጉሜ"
+  "1 - መስከረም / Meskerem","2 - ጥቅምት / Teqember","3 - ህዳር / Hidar","4 - ታኅሣሥ / Tahsas",
+  "5 - ጥር / Tir","6 - የካቲት / Genbot","7 - መጋቢት / Megabit","8 - ሚያዝያ / Miyazya",
+  "9 - ግንቦት / Ginbot","10 - ሰኔ / Sene","11 - ሐምሌ / Hamle","12 - ነሐሴ / Nehasé","13 - ጳጉሜ / Paguemé"
 ];
 
 // Gregorian months
 export const GR_MONTHS = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+  "1 - January", "2 - February", "3 - March", "4 - April", "5 - May", "6 - June",
+  "7 - July", "8 - August", "9 - September", "10 - October", "11 - November", "12 - December"
 ];
 
 export function useDateConversion() {

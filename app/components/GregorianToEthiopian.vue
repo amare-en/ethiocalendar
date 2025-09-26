@@ -2,7 +2,7 @@
   <v-container class="d-flex justify-center">
     <v-row
       class="flex-column rounded-lg pa-6"
-      style="max-width: 500px;"
+      style="max-width: 800px;"
     >
       <!-- Title -->
       <h2 class="text-h6 text-center mb-6 font-weight-bold text-primary">
@@ -79,7 +79,6 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useDateConversion } from "@/composables/useDateConversion";
-
 // Extract composable state
 const {
   grDay, grMonth, grYear,

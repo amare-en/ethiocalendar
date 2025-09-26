@@ -107,7 +107,6 @@ background-color: #FCFCFC;
 .footer-links a:hover {
   color: rgb(var(--v-theme-primary));
 }
-
 .footer-links li {
   margin-bottom: 12px;
 }
