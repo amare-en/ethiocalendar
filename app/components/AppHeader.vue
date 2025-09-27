@@ -54,6 +54,8 @@ const menuItems = [
   { title: 'Current Ethiopian Date & Time', to: '/Current-Ethiopia-Date', icon: 'mdi-information' },
   //{ title: 'Time', to: '/Ethiopia-Time', icon: 'mdi-clock' },
   { title: 'Holidays', to: '/Holidays', icon: 'mdi-party-popper' },
+  { title: 'Blog', to: '/Blog', icon: 'mdi-blogger' },
+  
 ];
 </script>
 <style scoped>
