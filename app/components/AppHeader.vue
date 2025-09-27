@@ -6,7 +6,6 @@
         <!-- Left: Logo + Title -->
         <v-col cols="auto" class="d-flex align-center">
           <NuxtLink to="/" class="d-flex align-center text-decoration-none text-white">
-            
             <v-img
               src="/logo.png"
               alt="Logo"

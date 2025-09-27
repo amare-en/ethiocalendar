@@ -1,0 +1,4 @@
+const FeatureCards_vue_vue_type_style_index_0_scoped_b7d81095_lang = ".feature-box[data-v-b7d81095]{background:#fff}.feature-title[data-v-b7d81095]{color:#111827;font-size:1.4rem;font-weight:700;margin-bottom:12px}.feature-desc[data-v-b7d81095]{color:#4b5563;flex-grow:1;font-size:1rem;line-height:1.6}";
+
+export { FeatureCards_vue_vue_type_style_index_0_scoped_b7d81095_lang as F };
+//# sourceMappingURL=FeatureCards-styles-1.mjs-HK-unv8q.mjs.map

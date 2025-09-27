@@ -1,0 +1,1 @@
+import{_ as t,c as l,a as o,F as n,o as r}from"./C3kjzMtU.js";const s={};function a(c,e){return r(),l(n,null,[e[0]||(e[0]=o("h1",null,"Blog",-1)),e[1]||(e[1]=o("p",null,"Welcome to the blog page!",-1))],64)}const m=t(s,[["render",a]]);export{m as default};
